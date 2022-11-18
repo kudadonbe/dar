@@ -1,0 +1,31 @@
+{
+  "name": "dar",
+  "version": "1.0.0",
+  "description": "The house of everything...",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kudadonbe/dar.git"
+  },
+  "keywords": [
+    "dar"
+  ],
+  "author": "kudadonbe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kudadonbe/dar/issues"
+  },
+  "homepage": "https://github.com/kudadonbe/dar#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
