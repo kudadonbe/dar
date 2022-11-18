@@ -25,5 +25,5 @@ const newProduct = (product) => {
 const beforUpdate = (product) => {
     return mudaIslaahu.validate(product);
 }
-
+// test update
 module.exports = { newProduct, beforUpdate };
