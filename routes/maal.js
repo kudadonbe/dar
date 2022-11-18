@@ -1,5 +1,6 @@
 const express = require('express');
 const Joi = require('joi');
+const dataValidate = require('../datavalidation')
 const maal = express.Router();
 
 maal.route('/')
@@ -7,16 +8,8 @@ maal.route('/')
         res.json(products);
     })
     .post((req, res) => {
-        const schema = Joi.object({
-            name: Joi.string().min(3).required(),
-            price: Joi.number().required(),
-            maf: Joi.string(),
-            exp: Joi.string().required()
 
-        });
-
-        const { error, value } = schema.validate(req.body);
-
+        const { error, value } = dataValidate.newProduct(req.body)
         if (error) return res.json(error.details[0].message);
 
         const product = {
@@ -46,15 +39,7 @@ maal.route('/:id')
         if (!product) return res.status(404).json({ error: "Product not found" })
 
         //Validate
-        const schema = Joi.object({
-            name: Joi.string().min(3),
-            price: Joi.number(),
-            maf: Joi.string(),
-            exp: Joi.string()
-
-        });
-
-        const { error, value } = schema.validate(req.body);
+        const { error, value } = dataValidate.beforUpdate(req.body);
 
         //If invalid, return 400 - Bad request
         if (error) return res.status(400).json(error.details[0].message);
@@ -62,8 +47,8 @@ maal.route('/:id')
         //Update product
         if (req.body.name) product.name = req.body.name;
         if (req.body.price) product.price = parseFloat(req.body.price);
-        if (req.body.maf) product.name = req.body.maf;
-        if (req.body.exp) product.name = req.body.exp;
+        if (req.body.maf) product.maf = req.body.maf;
+        if (req.body.exp) product.exp = req.body.exp;
 
         //Retuen the updated product
         res.json(product)
