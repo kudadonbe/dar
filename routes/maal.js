@@ -3,6 +3,26 @@ const Joi = require('joi');
 const dataValidate = require('../datavalidation')
 const maal = express.Router();
 
+const products = [
+    {
+        id: 1,
+        name: "Cake Rolls",
+        price: 2.00,
+        maf: "31/12/2021",
+        exp: "12/10/2023"
+
+    },
+    {
+        id: 2,
+        name: "Enamle Paint",
+        price: 10.00,
+        maf: "11/10/2019",
+        exp: "30/10/2023"
+
+    }
+];
+
+
 maal.route('/')
     .get((req, res) => {
         res.json(products);
@@ -70,24 +90,6 @@ maal.route('/:id')
     })
 
 
-const products = [
-    {
-        id: 1,
-        name: "Cake Rolls",
-        price: 2.00,
-        maf: "31/12/2021",
-        exp: "12/10/2023"
-
-    },
-    {
-        id: 2,
-        name: "Enamle Paint",
-        price: 10.00,
-        maf: "11/10/2019",
-        exp: "30/10/2023"
-
-    }
-];
 
 
 maal.param('id', (req, res, next, id) => {
